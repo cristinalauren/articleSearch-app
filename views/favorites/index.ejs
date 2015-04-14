@@ -2,9 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Favorites</title>
 </head>
 <body>
-  <h1>You Made it This far</h1>
+  <h1>List of Articles</h1>
+
+  <body>
+  <div class="container">
+    <div>
+      <a href="/articles/index">Search</a>
+    </div>
+    <h1>Hi <%= ejsUser.email %></h1>
+    <form method="POST" action="/logout?_method=DELETE">
+      <button>Logout</button>
+
 </body>
 </html>
