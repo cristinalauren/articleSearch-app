@@ -11,5 +11,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return FavoriteMovie;
+  return FavoriteArticle;
 };

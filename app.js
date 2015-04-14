@@ -49,7 +49,7 @@ app.get('/sessions/new', function(req, res) {
     res.render("sessions/new");
 });
 
-app.get('/articles/index', function(req, res) {
+app.get('/articles', function(req, res) {
     req.currentUser().then(function(dbUser) {
         if (dbUser) {
             db.FavoriteArticle.findAll({
@@ -69,7 +69,7 @@ app.get('/articles/index', function(req, res) {
         }
     }); });
 
-app.get('/articles/index', function(req,res){
+app.get('/articles', function(req,res){
       var article = req.query.id;
       var url = 'www.NYTAPI'+NYT;
       request(url, function(err, resp, body){
@@ -80,7 +80,7 @@ app.get('/articles/index', function(req,res){
       });
       });
 
-app.get('/articles/index',function(req,res){
+app.get('/articles',function(req,res){
   var articleSearch = req.query.search;
   if (!articleSearch) {
     res.render("articles/index", {articles: [], noarticles: true});
@@ -109,7 +109,7 @@ app.get('/sessions/new', function(req,res){
        });
        });
 
-app.get('/favorites/index', function(req,res){
+app.get('/favorites', function(req,res){
   req.currentUser().then(function(dbUser){
     if (dbUser) {
       db.FavoriteArticle.findAll({where: {UserId: dbUser.id}})
@@ -123,7 +123,7 @@ app.get('/favorites/index', function(req,res){
   });});
 
 //POST
-app.post('/users/new', function(req,res){
+app.post('/users', function(req,res){
   var email = req.body.email;
   var password = req.body.password;
   db.User.createSecure(email,password)
@@ -131,7 +131,7 @@ app.post('/users/new', function(req,res){
       res.redirect('/favorites/index');
     });});
 
-app.post('/sessions/new', function(req,res){
+app.post('/sessions', function(req,res){
   var email = req.body.email;
   var password = req.body.password;
   db.User.authenticate(email,password)
@@ -145,7 +145,7 @@ app.post('/sessions/new', function(req,res){
     });});
 
 //DELETE
-app.delete('/logout', function(req,res){
+app.delete('/sessions', function(req,res){
   req.logout();
   res.redirect('/sessions/new');});
 
